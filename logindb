@@ -1,0 +1,99 @@
+USE library_db;
+CREATE TABLE admin (
+    admin_id VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(50) NOT NULL
+);
+INSERT INTO admin VALUES ('admin1', 'admin123');
+SELECT * FROM admin;
+CREATE TABLE librarian (
+    librarian_id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(50),
+    password VARCHAR(50) NOT NULL
+);
+INSERT INTO librarian VALUES ('lib101', 'Ramesh', 'lib123');
+INSERT INTO librarian VALUES ('lib100', 'Geeta', 'Geeta102');
+SELECT * FROM librarian;
+CREATE TABLE student (
+    roll_no VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(50),
+    course VARCHAR(50),
+    password VARCHAR(50) NOT NULL
+);
+INSERT INTO student VALUES ('22AIM01', 'Priya', 'BCA', 'stu123');
+INSERT INTO student VALUES ('24B11CS195', 'Bindu', 'CSE', 'Bindu195');
+INSERT INTO student VALUES ('24B11CS420', 'Nikhil', 'CSE', 'Nikhil420');
+INSERT INTO student VALUES ('24B11CS428', 'Shiva', 'CSE', 'Shiva428');
+INSERT INTO student VALUES ('24B11CS429', 'Vijay', 'CSE', 'Vijay429');
+INSERT INTO student VALUES ('24B11EE510', 'Padma', 'EEE', 'Padma510');
+INSERT INTO student VALUES ('24B11EC515', 'Hari', 'ECE', 'Hari515');
+SELECT * FROM student;
+CREATE TABLE books (
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    price DOUBLE,
+    quantity INT
+);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Computer Vision', 'J.Ponce', 330.00, 20);
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Artificial Intelligence', 'Pearson', 380.00, 17);
+INSERT INTO books (title, author, price, quantity)
+VALUES ('MERN', 'Robet W Sebesta', 442.00, 13);
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Probability and Statistics', 'T.K.V Iyengar', 390.00, 30);
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Computer Networks', 'Andrew.S', 410.00, 25);
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, First Edition', 'Herbert Schildt', 500.00, 5);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Second Edition', 'Herbert Schildt', 520.00, 10);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Third Edition', 'Herbert Schildt', 540.00, 20);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Fourth Edition', 'Herbert Schildt', 560.00, 10);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java 2: The Complete Reference, Fifth Edition', 'Herbert Schildt', 580.00, 20);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java 2: The Complete Reference, Sixth Edition', 'Herbert Schildt', 600.00, 15);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java SE 6: The Complete Reference, Seventh Edition', 'Herbert Schildt', 620.00, 20);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Eighth Edition', 'Herbert Schildt', 650.00, 25);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Ninth Edition', 'Herbert Schildt', 700.00, 45);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Tenth Edition', 'Herbert Schildt', 750.00, 35);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Eleventh Edition', 'Herbert Schildt', 800.00, 30);
+
+INSERT INTO books (title, author, price, quantity)
+VALUES ('Java: The Complete Reference, Twelfth Edition', 'Herbert Schildt', 850.00, 40);
+SELECT * FROM books;
+USE library_db;
+USE library_db;
+select * from borrowed_books;
+CREATE TABLE borrowed_books (
+    roll_no VARCHAR(20),
+    book_id INT,
+    taken_date DATE,
+    return_date DATE,
+    FOREIGN KEY (roll_no) REFERENCES student(roll_no),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
+INSERT INTO borrowed_books (roll_no, book_id, taken_date, return_date)
+VALUES ('22AIM01', 1, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 7 DAY));
+SELECT * FROM student;
+ALTER TABLE borrowed_books 
+ADD actual_return_date DATE;
