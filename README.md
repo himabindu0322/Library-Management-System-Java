@@ -38,7 +38,7 @@ Library-Management-System
 
 ### Login Page
 
-![Login](images/login.png)
+
 
 
 ## 👩‍💻 Team Members
